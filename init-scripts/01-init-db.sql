@@ -1,0 +1,22 @@
+DO
+$$
+BEGIN
+   IF NOT EXISTS (
+      SELECT FROM pg_catalog.pg_roles WHERE rolname = 'postgres'
+   ) THEN
+      CREATE ROLE postgres WITH LOGIN PASSWORD 'admin';
+   END IF;
+END
+$$;
+
+
+ALTER USER postgres WITH LOGIN PASSWORD 'admin';
+GRANT CONNECT ON DATABASE ecommerce_db TO postgres;
+
+GRANT USAGE ON SCHEMA public TO postgres;
+
+GRANT ALL PRIVILEGES ON ALL TABLES IN SCHEMA public TO postgres;
+GRANT ALL PRIVILEGES ON ALL SEQUENCES IN SCHEMA public TO postgres;
+
+ALTER DEFAULT PRIVILEGES IN SCHEMA public GRANT ALL ON TABLES TO postgres;
+ALTER DEFAULT PRIVILEGES IN SCHEMA public GRANT ALL ON SEQUENCES TO postgres;
