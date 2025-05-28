@@ -1,0 +1,13 @@
+# FastAPI Project .gitignore
+__pycache__/
+*.pyc
+*.pyo
+*.pyd
+*.egg-info/
+*.egg
+*.log
+venv/
+.vscode/
+# .env
+.DS_Store
+Thumbs.db
