@@ -1,8 +1,9 @@
-from pydantic import BaseModel, Field, ConfigDict
-from decimal import Decimal
 from datetime import datetime
-from typing import List, Optional
+from decimal import Decimal
 from enum import Enum
+from typing import List, Optional
+
+from pydantic import BaseModel, ConfigDict, Field
 
 
 class ChangeType(str, Enum):
@@ -22,7 +23,7 @@ class CategoryCreate(CategoryBase):
 
 class CategoryResponse(CategoryBase):
     model_config = ConfigDict(from_attributes=True)
-    
+
     id: int
     created_at: datetime
     updated_at: Optional[datetime] = None
@@ -54,7 +55,7 @@ class ProductUpdate(BaseModel):
 
 class ProductResponse(ProductBase):
     model_config = ConfigDict(from_attributes=True)
-    
+
     id: int
     created_at: datetime
     updated_at: Optional[datetime] = None
@@ -71,7 +72,7 @@ class InventoryUpdate(BaseModel):
 
 class InventoryResponse(BaseModel):
     model_config = ConfigDict(from_attributes=True)
-    
+
     id: int
     product_id: int
     quantity: int
@@ -93,7 +94,7 @@ class SaleCreate(BaseModel):
 
 class SaleResponse(BaseModel):
     model_config = ConfigDict(from_attributes=True)
-    
+
     id: int
     product_id: int
     quantity: int
